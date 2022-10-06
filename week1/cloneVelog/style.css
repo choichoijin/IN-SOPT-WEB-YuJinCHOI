@@ -1,0 +1,193 @@
+body {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+img.roundImg {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+header {
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header > h1 {
+  font-size: 25px;
+}
+
+header > div {
+  display: flex;
+  align-items: center;
+}
+
+button.newPost {
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 5px 10px;
+  margin-right: 15px;
+  background-color: white;
+  border: 1px solid black;
+}
+
+img.lightModeIcon {
+  width: 24px;
+  height: 24px;
+  padding: 8px;
+}
+
+img.searchIcon {
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+}
+
+img.arrowDownIcon {
+  width: 23px;
+  height: 20px;
+}
+
+img.profile {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+
+nav {
+  height: 48px;
+  position: relative;
+  margin-top: 24px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+
+nav > button {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: 10px;
+  border-style: none;
+  background-color: transparent;
+}
+
+nav > button:first-of-type {
+  border-bottom: 2.5px solid black;
+}
+
+nav > button:nth-of-type(2) {
+  border-bottom: 2.5px solid transparent;
+  color: gray;
+}
+
+img.navIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+select.selectWeek {
+  width: 84px;
+  height: 32px;
+  padding-left: 5px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 4px 0px;
+  background-color: white;
+}
+
+img.dotsIcon {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 0;
+}
+
+img.thumbnail {
+  width: 100%;
+  height: 167px;
+}
+
+section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+article {
+  width: 328px;
+  height: 377px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
+  overflow: hidden;
+}
+
+article > h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 10px 0 15px 10px;
+}
+
+article > p {
+  font-size: 14px;
+  margin: 10px 0 75px 10px;
+}
+
+article > div.subDescription {
+  font-size: 12px;
+  color: gray;
+  margin: 0 10px 20px 10px;
+}
+
+hr {
+  margin: 0 0;
+  border-style: none;
+  border-top: 0.3px solid gray;
+}
+
+article > div.subInfo {
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+}
+
+img.editor {
+  width: 24px;
+  height: 24px;
+  margin: 0 10px;
+}
+
+div.editorDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.editorDiv > p {
+  color: gray;
+  font-size: 15px;
+}
+
+.editorText > span {
+  color: black;
+}
+
+div.likesDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.likes {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
