@@ -9,10 +9,10 @@ img.roundImg {
 }
 
 header {
-  height: 64px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 64px;
 }
 
 header > h1 {
@@ -25,13 +25,13 @@ header > div {
 }
 
 button.newPost {
-  padding: 5px 10px;
   margin-right: 15px;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 25px;
   font-size: 16px;
   font-weight: 500;
   background-color: white;
-  border: 1px solid black;
-  border-radius: 25px;
 }
 
 img.lightModeIcon {
@@ -58,23 +58,23 @@ img.profile {
 }
 
 nav {
-  height: 48px;
   position: relative;
-  margin-top: 24px;
-  margin-bottom: 30px;
   display: flex;
   align-items: center;
+  height: 48px;
+  margin-top: 24px;
+  margin-bottom: 30px;
 }
 
 nav > button {
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
-  font-weight: 500;
+  height: 100%;
   margin-right: 10px;
   border-style: none;
+  font-size: 16px;
+  font-weight: 500;
   background-color: transparent;
 }
 
@@ -103,25 +103,25 @@ select.selectWeek {
 }
 
 img.dotsIcon {
-  width: 24px;
-  height: 24px;
   position: absolute;
   right: 0;
+  width: 24px;
+  height: 24px;
 }
 
 section {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center;
 }
 
 article {
+  overflow: hidden;
   height: 377px;
+  margin-bottom: 30px;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
-  overflow: hidden;
-  margin-bottom: 30px;
 }
 
 article:hover {
@@ -136,20 +136,20 @@ article > img.thumbnail {
 }
 
 article > h4 {
+  margin: 10px 0 15px 10px;
   font-size: 16px;
   font-weight: 700;
-  margin: 10px 0 15px 10px;
 }
 
 article > p {
-  font-size: 14px;
   margin: 10px 0 75px 10px;
+  font-size: 14px;
 }
 
 article > div.subDescription {
+  margin: 0 10px 20px 10px;
   font-size: 12px;
   color: gray;
-  margin: 0 10px 20px 10px;
 }
 
 hr {
@@ -159,9 +159,9 @@ hr {
 }
 
 article > div.subInfo {
-  height: 45px;
   display: flex;
   justify-content: space-between;
+  height: 45px;
 }
 
 img.editor {
@@ -181,7 +181,7 @@ div.editorDiv > p {
   font-size: 15px;
 }
 
-.editorText > span {
+div.editorDiv span {
   color: black;
 }
 
@@ -201,7 +201,6 @@ img.likesIcon {
 @media screen and (max-width: 1024px) {
   body {
     width: 720px;
-    margin: 0 auto;
   }
   article {
     width: 350px;
@@ -211,7 +210,6 @@ img.likesIcon {
 @media screen and (max-width: 720px) {
   body {
     width: 432px;
-    margin: 0 auto;
   }
   article {
     width: 432px;
