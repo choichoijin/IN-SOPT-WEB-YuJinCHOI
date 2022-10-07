@@ -25,13 +25,13 @@ header > div {
 }
 
 button.newPost {
-  border-radius: 25px;
-  font-size: 16px;
-  font-weight: 500;
   padding: 5px 10px;
   margin-right: 15px;
+  font-size: 16px;
+  font-weight: 500;
   background-color: white;
   border: 1px solid black;
+  border-radius: 25px;
 }
 
 img.lightModeIcon {
@@ -109,11 +109,6 @@ img.dotsIcon {
   right: 0;
 }
 
-img.thumbnail {
-  width: 100%;
-  height: 167px;
-}
-
 section {
   display: flex;
   flex-wrap: wrap;
@@ -122,11 +117,22 @@ section {
 }
 
 article {
-  width: 328px;
   height: 377px;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
   overflow: hidden;
+  margin-bottom: 30px;
+}
+
+article:hover {
+  transition: transform 0.1s linear;
+  transform: scale(1.05);
+}
+
+article > img.thumbnail {
+  width: 100%;
+  height: 167px;
+  object-fit: cover;
 }
 
 article > h4 {
@@ -186,8 +192,28 @@ div.likesDiv {
   margin-right: 10px;
 }
 
-.likes {
+img.likesIcon {
   width: 15px;
   height: 15px;
   margin-right: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    width: 720px;
+    margin: 0 auto;
+  }
+  article {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  body {
+    width: 432px;
+    margin: 0 auto;
+  }
+  article {
+    width: 432px;
+  }
 }
