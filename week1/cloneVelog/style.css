@@ -153,7 +153,7 @@ article > div.subDescription {
 }
 
 hr {
-  margin: 0 0;
+  margin: 0;
   border-style: none;
   border-top: 0.3px solid gray;
 }
@@ -185,7 +185,7 @@ div.editorDiv span {
   color: black;
 }
 
-div.likesDiv {
+footer.articleFooter {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -200,18 +200,18 @@ img.likesIcon {
 
 @media screen and (max-width: 1024px) {
   body {
-    width: 720px;
+    width: 80%;
   }
   article {
-    width: 350px;
+    width: 45%;
   }
 }
 
 @media screen and (max-width: 720px) {
   body {
-    width: 432px;
+    width: 80%;
   }
   article {
-    width: 432px;
+    width: 100%;
   }
 }
