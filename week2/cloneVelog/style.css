@@ -1,0 +1,217 @@
+body {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+img.roundImg {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+header > h1 {
+  font-size: 25px;
+}
+
+header > div {
+  display: flex;
+  align-items: center;
+}
+
+button.newPost {
+  margin-right: 15px;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: white;
+}
+
+img.lightModeIcon {
+  width: 24px;
+  height: 24px;
+  padding: 8px;
+}
+
+img.searchIcon {
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+}
+
+img.arrowDownIcon {
+  width: 23px;
+  height: 20px;
+}
+
+img.profile {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+
+nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  margin-top: 24px;
+  margin-bottom: 30px;
+}
+
+nav > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-right: 10px;
+  border-style: none;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: transparent;
+}
+
+nav > button:first-of-type {
+  border-bottom: 2.5px solid black;
+}
+
+nav > button:nth-of-type(2) {
+  border-bottom: 2.5px solid transparent;
+  color: gray;
+}
+
+img.navIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+select.selectWeek {
+  width: 84px;
+  height: 32px;
+  padding-left: 5px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 4px 0px;
+  background-color: white;
+}
+
+img.dotsIcon {
+  position: absolute;
+  right: 0;
+  width: 24px;
+  height: 24px;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+article {
+  overflow: hidden;
+  height: 377px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
+}
+
+article:hover {
+  transition: transform 0.1s linear;
+  transform: scale(1.05);
+}
+
+article > img.thumbnail {
+  width: 100%;
+  height: 167px;
+  object-fit: cover;
+}
+
+article > h4 {
+  margin: 10px 0 15px 10px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+article > p {
+  margin: 10px 0 75px 10px;
+  font-size: 14px;
+}
+
+article > div.subDescription {
+  margin: 0 10px 20px 10px;
+  font-size: 12px;
+  color: gray;
+}
+
+hr {
+  margin: 0 0;
+  border-style: none;
+  border-top: 0.3px solid gray;
+}
+
+article > div.subInfo {
+  display: flex;
+  justify-content: space-between;
+  height: 45px;
+}
+
+img.editor {
+  width: 24px;
+  height: 24px;
+  margin: 0 10px;
+}
+
+div.editorDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.editorDiv > p {
+  color: gray;
+  font-size: 15px;
+}
+
+div.editorDiv span {
+  color: black;
+}
+
+div.likesDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+img.likesIcon {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    width: 720px;
+  }
+  article {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  body {
+    width: 432px;
+  }
+  article {
+    width: 432px;
+  }
+}
