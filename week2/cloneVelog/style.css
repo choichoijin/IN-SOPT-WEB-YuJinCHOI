@@ -93,13 +93,45 @@ img.navIcon {
   margin-right: 10px;
 }
 
-select.selectWeek {
-  width: 84px;
+div.selectTerm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   height: 32px;
-  padding-left: 5px;
-  border-style: none;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 4px 0px;
+  cursor: pointer;
+}
+
+p.term {
+  margin: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+ul.termOptionList {
+  position: absolute;
+  width: 100px;
+  top: 40px;
   background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 4px 0px;
+}
+
+ul.termOptionList > hr {
+  border: 0.5px solid #e9ecef;
+}
+
+li.termOption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+li.termOption:hover {
+  color: #12b886;
 }
 
 img.dotsIcon {
@@ -196,6 +228,14 @@ img.likesIcon {
   width: 15px;
   height: 15px;
   margin-right: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.colorGreen {
+  color: #12b886;
 }
 
 @media screen and (max-width: 1024px) {
