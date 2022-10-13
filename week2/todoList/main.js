@@ -1,7 +1,14 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
-function todayAddList({ todayAddButton, todayInputValue, todayList }) {
+function addListItem({
+  todayAddButton,
+  todayInputValue,
+  todayList,
+  tomorrowAddButton,
+  tomorrowInputValue,
+  tomorrowList,
+}) {
   todayAddButton.addEventListener("click", (e) => {
     e.preventDefault();
     if (todayInputValue.value) {
@@ -18,30 +25,24 @@ function todayAddList({ todayAddButton, todayInputValue, todayList }) {
       todayInputValue.value = "";
       deleteListItem();
     }
-  });
-}
 
-function tomorrowAddList({
-  tomorrowAddButton,
-  tomorrowInputValue,
-  tomorrowList,
-}) {
-  tomorrowAddButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (tomorrowInputValue.value) {
-      const li = document.createElement("li");
-      const p = document.createElement("p");
-      const button = document.createElement("button");
-      p.innerText = tomorrowInputValue.value;
-      button.innerText = "X";
-      button.classList = "delete";
-      tomorrowList.appendChild(li);
-      li.appendChild(p);
-      li.appendChild(button);
-      li.classList.add("listItem");
-      tomorrowInputValue.value = "";
-      deleteListItem();
-    }
+    tomorrowAddButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (tomorrowInputValue.value) {
+        const li = document.createElement("li");
+        const p = document.createElement("p");
+        const button = document.createElement("button");
+        p.innerText = tomorrowInputValue.value;
+        button.innerText = "X";
+        button.classList = "delete";
+        tomorrowList.appendChild(li);
+        li.appendChild(p);
+        li.appendChild(button);
+        li.classList.add("listItem");
+        tomorrowInputValue.value = "";
+        deleteListItem();
+      }
+    });
   });
 }
 
@@ -49,7 +50,6 @@ function deleteListItem() {
   const deleteButtons = $$("button.delete");
   for (const button of deleteButtons) {
     button.addEventListener("click", (e) => {
-      e.preventDefault();
       e.target.parentElement.remove();
     });
   }
@@ -58,18 +58,14 @@ function deleteListItem() {
 function handleLayout({ todaySection, tomorrowSection, navButtons }) {
   navButtons[0].addEventListener("click", (e) => {
     e.preventDefault();
-    tomorrowSection.classList.remove("slideToLeft");
-    todaySection.classList.remove("hidden");
-    todaySection.classList.add("slideToRight");
-    tomorrowSection.classList.add("hidden");
+    todaySection.className = "today slideToRight";
+    tomorrowSection.className = "tomorrow hidden";
   });
 
   navButtons[1].addEventListener("click", (e) => {
     e.preventDefault();
-    todaySection.classList.remove("slideToRight", "hidden");
-    tomorrowSection.classList.remove("slideToLeft", "hidden");
-    todaySection.classList.add("slideToOrigin");
-    tomorrowSection.classList.add("slideToOrigin");
+    todaySection.className = "slideToOrigin today";
+    tomorrowSection.className = "slideToOrigin tomorrow";
     setTimeout(() => {
       todaySection.classList.remove("slideToOrigin");
       tomorrowSection.classList.remove("slideToOrigin");
@@ -78,16 +74,13 @@ function handleLayout({ todaySection, tomorrowSection, navButtons }) {
 
   navButtons[2].addEventListener("click", (e) => {
     e.preventDefault();
-    todaySection.classList.remove("slideToRight");
-    tomorrowSection.classList.remove("hidden");
-    tomorrowSection.classList.add("slideToLeft");
-    todaySection.classList.add("hidden");
+    todaySection.className = "today hidden";
+    tomorrowSection.className = "tomorrow slideToLeft";
   });
 }
 
 function eventManager(todo) {
-  todayAddList(todo);
-  tomorrowAddList(todo);
+  addListItem(todo);
   deleteListItem();
   handleLayout(todo);
 }
