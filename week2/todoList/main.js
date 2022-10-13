@@ -1,58 +1,52 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
-function addListItem({
-  todayAddButton,
-  todayInputValue,
-  todayList,
-  tomorrowAddButton,
-  tomorrowInputValue,
-  tomorrowList,
-}) {
-  todayAddButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (todayInputValue.value) {
-      const li = document.createElement("li");
-      const p = document.createElement("p");
-      const button = document.createElement("button");
-      p.innerText = todayInputValue.value;
-      button.innerText = "X";
-      button.classList = "delete";
-      todayList.appendChild(li);
-      li.appendChild(p);
-      li.appendChild(button);
-      li.classList.add("listItem");
-      todayInputValue.value = "";
-      deleteListItem();
-    }
-
-    tomorrowAddButton.addEventListener("click", (e) => {
+//클릭한 버튼이 today tomorrow인지 구분
+function handleSection({ addButtons }) {
+  addButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
       e.preventDefault();
-      if (tomorrowInputValue.value) {
-        const li = document.createElement("li");
-        const p = document.createElement("p");
-        const button = document.createElement("button");
-        p.innerText = tomorrowInputValue.value;
-        button.innerText = "X";
-        button.classList = "delete";
-        tomorrowList.appendChild(li);
-        li.appendChild(p);
-        li.appendChild(button);
-        li.classList.add("listItem");
-        tomorrowInputValue.value = "";
-        deleteListItem();
+      if (e.target.parentElement.classList.contains("today")) {
+        addListItem({ addButtons }, 0);
+      } else {
+        addListItem({ addButtons }, 1);
       }
     });
   });
 }
 
+//할 일 리스트 추가.
+function addListItem({ addButtons }, idx) {
+  const lists = $$("ul");
+  const inputs = $$("input");
+
+  addButtons[idx].addEventListener("click", (e) => {
+    e.preventDefault();
+    if (inputs[idx].value) {
+      const li = document.createElement("li");
+      const p = document.createElement("p");
+      const button = document.createElement("button");
+      p.innerText = inputs[idx].value;
+      button.innerText = "X";
+      button.classList = "delete";
+      lists[idx].appendChild(li);
+      li.appendChild(p);
+      li.appendChild(button);
+      li.classList.add("listItem");
+      inputs[idx].value = "";
+      deleteListItem();
+    }
+  });
+}
+
 function deleteListItem() {
   const deleteButtons = $$("button.delete");
-  for (const button of deleteButtons) {
+
+  deleteButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       e.target.parentElement.remove();
     });
-  }
+  });
 }
 
 function handleLayout({ todaySection, tomorrowSection, navButtons }) {
@@ -80,7 +74,7 @@ function handleLayout({ todaySection, tomorrowSection, navButtons }) {
 }
 
 function eventManager(todo) {
-  addListItem(todo);
+  handleSection(todo);
   deleteListItem();
   handleLayout(todo);
 }
@@ -90,11 +84,6 @@ window.onload = () => {
     navButtons: $$("nav > button"),
     todaySection: $("section.today"),
     tomorrowSection: $("section.tomorrow"),
-    todayList: $("ul.todayList"),
-    tomorrowList: $("ul.tomorrowList"),
-    todayInputValue: $("input.todayInput"),
-    tomorrowInputValue: $("input.tomorrowInput"),
-    todayAddButton: $("button.todayAdd"),
-    tomorrowAddButton: $("button.tomorrowAdd"),
+    addButtons: $$("button.add"),
   });
 };
