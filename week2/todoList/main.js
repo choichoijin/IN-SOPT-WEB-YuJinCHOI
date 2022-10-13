@@ -7,16 +7,16 @@ function handleSection({ addButtons }) {
     button.addEventListener("click", (e) => {
       e.preventDefault();
       if (e.target.parentElement.classList.contains("today")) {
-        addListItem({ addButtons }, 0);
+        handleListItem({ addButtons }, 0);
       } else {
-        addListItem({ addButtons }, 1);
+        handleListItem({ addButtons }, 1);
       }
     });
   });
 }
 
 //할 일 리스트 추가.
-function addListItem({ addButtons }, idx) {
+function handleListItem({ addButtons }, idx) {
   const lists = $$("ul");
   const inputs = $$("input");
 
