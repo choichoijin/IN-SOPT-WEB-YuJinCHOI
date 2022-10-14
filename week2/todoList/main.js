@@ -6,11 +6,9 @@ function handleSection({ addButtons }) {
   addButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       e.preventDefault();
-      if (e.target.parentElement.classList.contains("today")) {
-        handleListItem({ addButtons }, 0);
-      } else {
-        handleListItem({ addButtons }, 1);
-      }
+      e.target.parentElement.classList.contains("today")
+        ? handleListItem({ addButtons }, 0)
+        : handleListItem({ addButtons }, 1);
     });
   });
 }
@@ -58,12 +56,8 @@ function handleLayout({ todaySection, tomorrowSection, navButtons }) {
 
   navButtons[1].addEventListener("click", (e) => {
     e.preventDefault();
-    todaySection.className = "slideToOrigin today";
-    tomorrowSection.className = "slideToOrigin tomorrow";
-    setTimeout(() => {
-      todaySection.classList.remove("slideToOrigin");
-      tomorrowSection.classList.remove("slideToOrigin");
-    }, 500);
+    todaySection.className = "today slideToOrigin";
+    tomorrowSection.className = "tomorrow slideToOrigin";
   });
 
   navButtons[2].addEventListener("click", (e) => {

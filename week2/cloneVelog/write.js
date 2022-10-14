@@ -21,7 +21,7 @@ function addTag(inputValue) {
   li.className = "tag";
   //중복 방지.
   tagTextArr.includes(inputValue)
-    ? alert("중복된 태그입니다.")
+    ? alert("이미 같은 이름의 태그가 있어요!")
     : tagList.appendChild(li);
   //태그를 클릭하면 삭제.
   li.addEventListener("click", (e) => {
@@ -29,4 +29,6 @@ function addTag(inputValue) {
   });
 }
 
-attachEvent();
+window.onload = () => {
+  attachEvent();
+};

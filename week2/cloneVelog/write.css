@@ -17,3 +17,8 @@ li.tag {
   margin: 5px;
   cursor: pointer;
 }
+
+input {
+  border-style: none;
+  outline: none;
+}
