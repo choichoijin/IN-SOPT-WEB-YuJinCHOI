@@ -24,14 +24,16 @@ header > div {
   align-items: center;
 }
 
-button.newPost {
+a.newPost {
   margin-right: 15px;
-  padding: 5px 10px;
+  padding: 7px 10px;
   border: 1px solid black;
   border-radius: 25px;
+  color: black;
   font-size: 16px;
   font-weight: 500;
   background-color: white;
+  text-decoration: none;
 }
 
 img.lightModeIcon {

@@ -1,0 +1,19 @@
+main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+li {
+  font-size: 15px;
+  color: #12b886;
+  background-color: #f3f4f7;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
