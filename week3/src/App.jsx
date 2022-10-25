@@ -9,21 +9,37 @@ optionTextList.sort(() => Math.random() - 0.5);
 function App() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalText, setModalText] = useState("");
 
   const checkAnswer = (answer) => {
     if (answer === quizList[currentStep].answer) {
       if (currentStep === quizList.length - 1) {
         setIsFinished(true);
       }
-      setCurrentStep(currentStep + 1);
+      setModalText("정답입니다! 😄");
+      handleModal();
+      setTimeout(() => {
+        setCurrentStep(currentStep + 1);
+      }, 1000);
+    } else {
+      setModalText("다시 생각해보세요 🤔");
+      handleModal();
     }
+  };
+
+  const handleModal = () => {
+    setIsModalOpen(true);
+    setTimeout(() => {
+      setIsModalOpen(false);
+    }, 1000);
   };
 
   return (
     <>
       <Header>BTS, 봉준호, 손흥민, 떡볶이, let's go</Header>
       <Content>
-        <ScoreBoard>{currentStep} 점</ScoreBoard>
+        <ScoreBoard>{currentStep} points</ScoreBoard>
         {isFinished ? (
           <End>👏🏻 당신은 떡볶이 마스터! 👏🏻</End>
         ) : (
@@ -32,7 +48,10 @@ function App() {
             <OptionList>
               {optionTextList.map((optionText) => {
                 return (
-                  <Option onClick={() => checkAnswer(optionText)}>
+                  <Option
+                    key={optionText}
+                    onClick={() => checkAnswer(optionText)}
+                  >
                     {optionText}
                   </Option>
                 );
@@ -49,6 +68,7 @@ function App() {
           </QuizContainer>
         )}
       </Content>
+      {isModalOpen && <Modal>{modalText}</Modal>}
     </>
   );
 }
@@ -123,6 +143,21 @@ const RestartBtn = styled.button`
   &:hover {
     font-size: 26px;
   }
+`;
+
+const Modal = styled.div`
+  width: 230px;
+  height: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: wheat;
+  border-radius: 20px;
+  font-size: 23px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const End = styled.div`
