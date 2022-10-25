@@ -17,16 +17,16 @@ function App() {
       if (currentStep === quizList.length - 1) {
         setIsFinished(true);
       }
-      setIsCorrectAnswer(true);
-      handleModal();
+      handleModal(true);
       setCurrentStep(currentStep + 1);
     } else {
       setIsCorrectAnswer(false);
-      handleModal();
+      handleModal(false);
     }
   };
 
-  const handleModal = () => {
+  const handleModal = (value) => {
+    setIsCorrectAnswer(value);
     setIsModalOpen(true);
     setTimeout(() => {
       setIsModalOpen(false);
