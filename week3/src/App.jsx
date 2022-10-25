@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import plate from "./assets/plate.png";
+import Modal from "./Modal";
 import { optionTextList, quizList } from "./quizInfo";
 
 quizList.sort(() => Math.random() - 0.5);
@@ -66,11 +67,7 @@ function App() {
           </QuizContainer>
         )}
       </Content>
-      {isModalOpen && (
-        <Modal>
-          {isCorrectAnswer ? "정답입니다! 😃" : "다시 생각해보세요 😭"}
-        </Modal>
-      )}
+      {isModalOpen && <Modal isCorrectAnswer={isCorrectAnswer} />}
     </>
   );
 }
@@ -162,21 +159,6 @@ const RestartBtn = styled.button`
   &:hover {
     font-size: 26px;
   }
-`;
-
-const Modal = styled.div`
-  width: 230px;
-  height: 80px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: wheat;
-  border-radius: 20px;
-  font-size: 23px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const End = styled.div`
