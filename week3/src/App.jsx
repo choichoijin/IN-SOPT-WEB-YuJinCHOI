@@ -1,47 +1,37 @@
+import { useState } from "react";
 import styled from "styled-components";
-import pic1 from "./assets/baetteok.jpeg";
-import pic2 from "./assets/emergency.jpeg";
 import plate from "./assets/plate.png";
-import pic3 from "./assets/schoolfood.jpeg";
-import pic4 from "./assets/sinjeon.jpeg";
-import pic5 from "./assets/yeopgi.jpeg";
+import { optionTextList, quizList } from "./quizInfo";
+
+quizList.sort(() => Math.random() - 0.5);
+optionTextList.sort(() => Math.random() - 0.5);
 
 function App() {
-  const quizList = [
-    {
-      src: pic1,
-      answer: "배떡",
-    },
-    {
-      src: pic2,
-      answer: "응급실 떡볶이",
-    },
-    {
-      src: pic3,
-      answer: "스쿨 푸드",
-    },
-    {
-      src: pic4,
-      answer: "신전 떡볶이",
-    },
-    {
-      src: pic5,
-      answer: "엽기 떡볶이",
-    },
-  ];
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const checkAnswer = (answer) => {
+    if (answer === quizList[currentStep].answer) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      console.log("오답입니다!");
+    }
+  };
+
   return (
     <>
       <Header>BTS, 봉준호, 손흥민, 떡볶이, let's go</Header>
       <Content>
-        <ScoreBoard>0 점</ScoreBoard>
+        <ScoreBoard>{currentStep} 점</ScoreBoard>
         <QuizContainer>
-          <QuizImg src={quizList[0].src} />
+          <QuizImg src={quizList[currentStep].src} />
           <OptionList>
-            <Option>신전 떡볶이</Option>
-            <Option>응급실 떡볶이</Option>
-            <Option>스쿨 푸드</Option>
-            <Option>엽기 떡볶이</Option>
-            <Option>배떡</Option>
+            {optionTextList.map((optionText) => {
+              return (
+                <Option onClick={() => checkAnswer(optionText)}>
+                  {optionText}
+                </Option>
+              );
+            })}
           </OptionList>
           <RestartBtn>다시, let's go</RestartBtn>
         </QuizContainer>
@@ -61,7 +51,7 @@ const Header = styled.header`
   color: wheat;
 `;
 
-const Content = styled.content``;
+const Content = styled.div``;
 
 const QuizContainer = styled.div`
   display: flex;
