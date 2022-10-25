@@ -8,12 +8,14 @@ optionTextList.sort(() => Math.random() - 0.5);
 
 function App() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [isFinished, setIsFinished] = useState(false);
 
   const checkAnswer = (answer) => {
     if (answer === quizList[currentStep].answer) {
+      if (currentStep === quizList.length - 1) {
+        setIsFinished(true);
+      }
       setCurrentStep(currentStep + 1);
-    } else {
-      console.log("오답입니다!");
     }
   };
 
@@ -22,19 +24,30 @@ function App() {
       <Header>BTS, 봉준호, 손흥민, 떡볶이, let's go</Header>
       <Content>
         <ScoreBoard>{currentStep} 점</ScoreBoard>
-        <QuizContainer>
-          <QuizImg src={quizList[currentStep].src} />
-          <OptionList>
-            {optionTextList.map((optionText) => {
-              return (
-                <Option onClick={() => checkAnswer(optionText)}>
-                  {optionText}
-                </Option>
-              );
-            })}
-          </OptionList>
-          <RestartBtn>다시, let's go</RestartBtn>
-        </QuizContainer>
+        {isFinished ? (
+          <End>👏🏻 당신은 떡볶이 마스터! 👏🏻</End>
+        ) : (
+          <QuizContainer>
+            <QuizImg src={quizList[currentStep].src} />
+            <OptionList>
+              {optionTextList.map((optionText) => {
+                return (
+                  <Option onClick={() => checkAnswer(optionText)}>
+                    {optionText}
+                  </Option>
+                );
+              })}
+            </OptionList>
+            <RestartBtn
+              onClick={() => {
+                setCurrentStep(0);
+                setIsFinished(false);
+              }}
+            >
+              다시, let's go
+            </RestartBtn>
+          </QuizContainer>
+        )}
       </Content>
     </>
   );
@@ -52,6 +65,16 @@ const Header = styled.header`
 `;
 
 const Content = styled.div``;
+
+const ScoreBoard = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  font-size: 36px;
+  color: wheat;
+  background-color: #990000;
+`;
 
 const QuizContainer = styled.div`
   display: flex;
@@ -102,12 +125,10 @@ const RestartBtn = styled.button`
   }
 `;
 
-const ScoreBoard = styled.div`
+const End = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70px;
+  height: 570px;
   font-size: 36px;
-  color: wheat;
-  background-color: #990000;
 `;
