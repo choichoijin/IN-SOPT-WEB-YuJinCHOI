@@ -10,20 +10,18 @@ function App() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalText, setModalText] = useState("");
+  const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
 
   const checkAnswer = (answer) => {
     if (answer === quizList[currentStep].answer) {
       if (currentStep === quizList.length - 1) {
         setIsFinished(true);
       }
-      setModalText("정답입니다! 😄");
+      setIsCorrectAnswer(true);
       handleModal();
-      setTimeout(() => {
-        setCurrentStep(currentStep + 1);
-      }, 1000);
+      setCurrentStep(currentStep + 1);
     } else {
-      setModalText("다시 생각해보세요 🤔");
+      setIsCorrectAnswer(false);
       handleModal();
     }
   };
@@ -32,14 +30,14 @@ function App() {
     setIsModalOpen(true);
     setTimeout(() => {
       setIsModalOpen(false);
-    }, 1000);
+    }, 800);
   };
 
   return (
     <>
       <Header>BTS, 봉준호, 손흥민, 떡볶이, let's go</Header>
       <Content>
-        <ScoreBoard>{currentStep} points</ScoreBoard>
+        <ScoreBoard key={currentStep}>{currentStep} points</ScoreBoard>
         {isFinished ? (
           <End>👏🏻 당신은 떡볶이 마스터! 👏🏻</End>
         ) : (
@@ -68,7 +66,11 @@ function App() {
           </QuizContainer>
         )}
       </Content>
-      {isModalOpen && <Modal>{modalText}</Modal>}
+      {isModalOpen && (
+        <Modal>
+          {isCorrectAnswer ? "정답입니다! 😃" : "다시 생각해보세요 😭"}
+        </Modal>
+      )}
     </>
   );
 }
@@ -94,6 +96,23 @@ const ScoreBoard = styled.div`
   font-size: 36px;
   color: wheat;
   background-color: #990000;
+
+  animation: getScore 0.8s ease-in-out;
+
+  @keyframes getScore {
+    0% {
+      transform: scaleY(1);
+    }
+    30% {
+      transform: scaleY(1.3);
+    }
+    50% {
+      transform: scaleY(0.8);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
 `;
 
 const QuizContainer = styled.div`
