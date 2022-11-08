@@ -14,7 +14,7 @@
       <div>
         <img class="lightModeIcon" src="assets/lightMode.svg" />
         <img class="searchIcon" src="assets/search.svg" />
-        <button class="newPost">새 글 작성</button>
+        <a class="newPost" href="./write.html">새 글 작성</a>
         <img class="profile roundImg" src="assets/profile.jpeg" />
         <img class="arrowDownIcon" src="assets/arrowDown.svg" />
       </div>
@@ -28,9 +28,19 @@
         <img class="navIcon update" src="assets/update.svg" />
         <span>최신</span>
       </button>
-      <select class="selectWeek">
-        <option value="">이번 주</option>
-      </select>
+      <div class="selectTerm">
+        <p class="term">이번 주</p>
+        <img class="arrowDownIcon" src="assets/arrowDown.svg" />
+        <ul class="termOptionList hidden">
+          <li class="termOption">오늘</li>
+          <hr />
+          <li class="termOption colorGreen">이번 주</li>
+          <hr />
+          <li class="termOption">이번 달</li>
+          <hr />
+          <li class="termOption">올해</li>
+        </ul>
+      </div>
       <img class="dotsIcon" src="assets/dots.svg" />
     </nav>
     <main>
@@ -140,4 +150,5 @@
       </section>
     </main>
   </body>
+  <script type="module" src="./main.js"></script>
 </html>
