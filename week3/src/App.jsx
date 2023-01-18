@@ -46,7 +46,7 @@ function App() {
           <QuizContainer>
             <QuizImg
               src={quizList[currentStep].src}
-              alt={quiaList[currentStep].answer}
+              alt={quizList[currentStep].answer}
             />
             <OptionList>
               {optionTextList.map((optionText) => {
