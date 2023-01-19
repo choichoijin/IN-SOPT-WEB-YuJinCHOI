@@ -1,38 +1,31 @@
-import * as React from "react"
+import * as React from "react";
 import {
   ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
+  Flex,
   theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+  Input,
+  Heading,
+  Button,
+} from "@chakra-ui/react";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
+    <Flex
+      w="100vw"
+      h="150"
+      justifyContent="center"
+      alignItems="center"
+      flexDirection="column"
+      fontSize="xl"
+      borderRadius="15px"
+    >
+      <Heading m="10">Github Profile Finder</Heading>
+      <Flex>
+        <Input w={350} h={30} placeholder="Github Username"></Input>
+        <Button h={30} marginLeft={3}>
+          확인
+        </Button>
+      </Flex>
+    </Flex>
   </ChakraProvider>
-)
+);
