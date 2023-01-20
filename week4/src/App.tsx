@@ -7,9 +7,12 @@ import {
   Input,
   Heading,
   Button,
-  Box,
   Text,
   Image,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -24,7 +27,7 @@ interface DataType {
 
 function App() {
   const [keyword, setKeyword] = useState("");
-  // const [isNoUser, setIsNoUser] = useState(false);
+  const [isNoUser, setIsNoUser] = useState(false);
   const [data, setData] = useState<DataType>({
     login: "",
     name: "",
@@ -37,8 +40,14 @@ function App() {
     setKeyword(e.target.value);
   };
   const handleSubmit = async () => {
-    const response = await axios.get(`https://api.github.com/users/${keyword}`);
-    setData(response.data);
+    try {
+      const response = await axios.get(
+        `https://api.github.com/users/${keyword}`
+      );
+      setData(response.data);
+    } catch (error) {
+      setIsNoUser(true);
+    }
   };
   const { login, name, avatar_url, followers, following, html_url } = data;
   return (
@@ -67,36 +76,41 @@ function App() {
           </Button>
         </Flex>
       </Flex>
-      <Box>
-        {login && (
-          <Flex
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            border="gray solid 1px"
-            borderRadius="15px"
-            m={10}
-            p={5}
-          >
-            <Text fontSize={30} fontWeight={500}>
-              {name}
+      {!isNoUser && login && (
+        <Flex
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          border="gray solid 1px"
+          borderRadius="15px"
+          m={10}
+          p={5}
+        >
+          <Text fontSize={30} fontWeight={500}>
+            {name}
+          </Text>
+          <Text fontSize={20}>{login}</Text>
+          <Image src={avatar_url} w={40} h={40} m={5} borderRadius={15} />
+          <Flex gap={7}>
+            <Text fontSize={20}>
+              Followers: <b>{followers}</b>
             </Text>
-            <Text fontSize={20}>{login}</Text>
-            <Image src={avatar_url} w={40} h={40} m={5} borderRadius={15} />
-            <Flex gap={7}>
-              <Text fontSize={20}>
-                Followers: <b>{followers}</b>
-              </Text>
-              <Text fontSize={20}>
-                Following: <b>{following}</b>
-              </Text>
-            </Flex>
-            <Button m={5}>
-              <a href={html_url}>방문하기</a>
-            </Button>
+            <Text fontSize={20}>
+              Following: <b>{following}</b>
+            </Text>
           </Flex>
-        )}
-      </Box>
+          <Button m={5}>
+            <a href={html_url}>방문하기</a>
+          </Button>
+        </Flex>
+      )}
+      <Modal isOpen={isNoUser} onClose={() => setIsNoUser(false)}>
+        <ModalOverlay />
+        <ModalContent marginTop="170px">
+          <ModalHeader>유저를 찾을 수 없어요. 🤨</ModalHeader>
+          <Button onClick={() => setIsNoUser(false)}>닫기</Button>
+        </ModalContent>
+      </Modal>
     </ChakraProvider>
   );
 }
