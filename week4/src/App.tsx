@@ -13,6 +13,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  Box,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -27,6 +28,8 @@ interface DataType {
 
 function App() {
   const [keyword, setKeyword] = useState("");
+  const [keywordHistoryList, setKeywordHistoryList] = useState<string[]>([]);
+  const [showHistory, setShowHistory] = useState(false);
   const [isNoUser, setIsNoUser] = useState(false);
   const [data, setData] = useState<DataType>({
     login: "",
@@ -36,10 +39,18 @@ function App() {
     following: 0,
     html_url: "",
   });
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
+
   const handleSubmit = async () => {
+    getUserData(keyword);
+    setShowHistory(false);
+    setKeywordHistoryList([...keywordHistoryList, keyword]);
+  };
+
+  const getUserData = async (keyword: string) => {
     try {
       const response = await axios.get(
         `https://api.github.com/users/${keyword}`
@@ -49,7 +60,9 @@ function App() {
       setIsNoUser(true);
     }
   };
+
   const { login, name, avatar_url, followers, following, html_url } = data;
+
   return (
     <ChakraProvider theme={theme}>
       <Flex
@@ -63,14 +76,50 @@ function App() {
       >
         <Heading m="10">Github Profile Finder</Heading>
         <Flex>
-          <Input
-            w={350}
-            h={30}
-            placeholder="Github Username"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          />
+          <Box position="relative">
+            <Input
+              w={350}
+              h={30}
+              placeholder="Github Username"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+              onFocus={() => {
+                setShowHistory(true);
+              }}
+            />
+            {showHistory && (
+              <Flex flexDirection="column" w={350} position="absolute" top="31">
+                {keywordHistoryList.map((keyword) => (
+                  <Box w="350px">
+                    <Button
+                      key={keyword}
+                      onClick={() => {
+                        getUserData(keyword);
+                        setShowHistory(false);
+                      }}
+                      w="300px"
+                      fontSize="16px"
+                    >
+                      {keyword}
+                    </Button>
+                    <Button
+                      w="50px"
+                      onClick={() => {
+                        setKeywordHistoryList(
+                          keywordHistoryList.filter(
+                            (keywordOriginal) => keyword !== keywordOriginal
+                          )
+                        );
+                      }}
+                    >
+                      x
+                    </Button>
+                  </Box>
+                ))}
+              </Flex>
+            )}
+          </Box>
           <Button h={30} marginLeft={3} onClick={handleSubmit}>
             확인
           </Button>
