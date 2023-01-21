@@ -52,9 +52,7 @@ function App() {
 
   const getUserData = async (keyword: string) => {
     try {
-      const response = await axios.get(
-        `https://api.github.com/users/${keyword}`
-      );
+      const response = await axios.get(`/users/${keyword}`);
       setData(response.data);
     } catch (error) {
       setIsNoUser(true);
@@ -91,9 +89,8 @@ function App() {
             {showHistory && (
               <Flex flexDirection="column" w={350} position="absolute" top="31">
                 {keywordHistoryList.map((keyword) => (
-                  <Box w="350px">
+                  <Box w="350px" key={keyword}>
                     <Button
-                      key={keyword}
                       onClick={() => {
                         getUserData(keyword);
                         setShowHistory(false);
