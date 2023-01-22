@@ -16,6 +16,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
 interface DataType {
   login: string;
@@ -65,6 +66,7 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
+      <ColorModeSwitcher />
       <Flex
         w="100vw"
         h="150"
