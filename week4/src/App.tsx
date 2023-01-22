@@ -52,7 +52,9 @@ function App() {
 
   const getUserData = async (keyword: string) => {
     try {
-      const response = await axios.get(`/users/${keyword}`);
+      const response = await axios.get(
+        `https://api.github.com/users/${keyword}`
+      );
       setData(response.data);
     } catch (error) {
       setIsNoUser(true);
